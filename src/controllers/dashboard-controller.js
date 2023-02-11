@@ -28,4 +28,12 @@ export const dashboardController = {
       return h.redirect("/dashboard");
     },
   },
+
+  deletePin: {
+    handler: async function (request, h) {
+      const pin = await db.pinStore.getPinById(request.params.id);
+      await db.pinStore.deletePinById(pin._id);
+      return h.redirect("/dashboard");   
+    }
+  }
 };
