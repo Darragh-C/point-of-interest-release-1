@@ -3,9 +3,11 @@ import { db } from "../models/db.js";
 export const dashboardController = {
   index: {
     handler: async function (request, h) {
-      const pins = await db.pinStore.getAllPins();
+      const loggedInUser = request.auth.credentials;
+      const pins = await db.pinStore.getUserPins(loggedInUser._id);
       const viewData = {
         title: "Point of Interest Dashboard",
+        user: loggedInUser,
         pins: pins,
       };
       return h.view("dashboard-view", viewData);
@@ -14,7 +16,9 @@ export const dashboardController = {
 
   addPin: {
     handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
       const newPin = {
+        userid: loggedInUser._id,
         name: request.payload.name,
         description: request.payload.description,
         lattitude: request.payload.lattitude,

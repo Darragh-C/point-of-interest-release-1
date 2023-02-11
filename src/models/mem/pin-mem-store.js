@@ -25,4 +25,8 @@ export const pinMemStore = {
   async deleteAllPins() {
     pins = [];
   },
+
+  async getUserPins(userid) {
+    return pins.filter((pin) => pin.userid === userid);
+  },
 };
