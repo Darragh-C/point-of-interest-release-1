@@ -16,6 +16,9 @@ export const dashboardController = {
     handler: async function (request, h) {
       const newPin = {
         name: request.payload.name,
+        description: request.payload.description,
+        lattitude: request.payload.lattitude,
+        longitude: request.payload.longitude,
       };
       await db.pinStore.addPin(newPin);
       return h.redirect("/dashboard");
