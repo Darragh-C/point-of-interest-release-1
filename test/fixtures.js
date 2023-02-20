@@ -25,3 +25,31 @@ export const multiTestUsers = [
     password: "secret",
 },
 ];
+
+export const testPin = {
+    name: "Kinsale",
+    description: "Cork seaside town",
+    lattitude: "44.45",
+    longitude: "55.45",
+};
+
+export const multiTestPins = [
+    {
+        name: "Kinsale",
+        description: "Cork seaside town",
+        lattitude: "44.45",
+        longitude: "55.45",
+    },
+    {
+        name: "Cobh",
+        description: "Cork seaside town",
+        lattitude: "44.45",
+        longitude: "55.45",
+    },
+    {
+        name: "Castletownbere",
+        description: "Cork seaside town",
+        lattitude: "44.45",
+        longitude: "55.45",
+    },
+];

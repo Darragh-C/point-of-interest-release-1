@@ -21,8 +21,9 @@ export const pinJsonStore = {
   
     async getPinById(id) {
       await db.read();
-      const list = db.data.pins.find((pin) => pin._id === id);
-      return list;
+      let p = db.data.pins.find((pin) => pin._id === id);
+      if (p === undefined) p = null;
+      return p;
     },
   
     async getUserPins(userid) {
@@ -33,7 +34,7 @@ export const pinJsonStore = {
     async deletePinById(id) {
       await db.read();
       const index = db.data.pins.findIndex((pin) => pin._id === id);
-      db.data.pins.splice(index, 1);
+      if (index !== -1) db.data.pins.splice(index, 1);
       await db.write();
     },
   

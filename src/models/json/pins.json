@@ -1,3 +1,25 @@
 {
-    "pins": []
-  }
+  "pins": [
+    {
+      "name": "Kinsale",
+      "description": "Cork seaside town",
+      "lattitude": "44.45",
+      "longitude": "55.45",
+      "_id": "8e561fd9-1a7f-438e-900a-3a6998d6d11c"
+    },
+    {
+      "name": "Cobh",
+      "description": "Cork seaside town",
+      "lattitude": "44.45",
+      "longitude": "55.45",
+      "_id": "c1430f3b-5584-42d4-b939-784392ed75c5"
+    },
+    {
+      "name": "Castletownbere",
+      "description": "Cork seaside town",
+      "lattitude": "44.45",
+      "longitude": "55.45",
+      "_id": "06a12419-28e9-440e-a731-6240dae03fc7"
+    }
+  ]
+}
