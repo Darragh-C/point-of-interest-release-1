@@ -7,6 +7,10 @@ suite("User API tests", () => {
   setup(async () => {
     db.init();
     await db.userStore.deleteAll();
+    for (let i = 0; i < multiTestUsers.length; i += 1) {
+        // eslint-disable-next-line no-await-in-loop
+        await db.userStore.addUser(multiTestUsers[i]);
+    }
   });
 
   test("create a user", async () => {
@@ -15,10 +19,6 @@ suite("User API tests", () => {
   });
 
   test("delete all users", async () => {
-    for (let i = 0; i < multiTestUsers.length; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      await db.userStore.addUser(multiTestUsers[i]);
-    }
     let returnedUsers = await db.userStore.getAllUsers();
     assert.equal(returnedUsers.length, 3);
     await db.userStore.deleteAll();
@@ -26,5 +26,41 @@ suite("User API tests", () => {
     assert.equal(returnedUsers.length, 0);
   });
 
+  test("get a user - success", async () => {
+    const user = await db.userStore.addUser(johnDoe);
+    const returnedUser1 = await db.userStore.getUserById(user._id);
+    assert.deepEqual(user, returnedUser1);
+    const returnedUser2 = await db.userStore.getUserByEmail(user.email);
+    assert.deepEqual(user, returnedUser2);
+  });
 
+  test("get a user - fail", async () => {
+    const noUserWithId = await db.userStore.getUserById("123");
+    assert.isNull(noUserWithId);
+    const noUserWithEmail = await db.userStore.getUserByEmail("no@one.com");
+    assert.isNull(noUserWithEmail);
+  });
+
+  test("get a user - bad params", async () => {
+    let nullUser = await db.userStore.getUserByEmail("");
+    assert.isNull(nullUser);
+    nullUser = await db.userStore.getUserById("");
+    assert.isNull(nullUser);
+    nullUser = await db.userStore.getUserById();
+    assert.isNull(nullUser);
+  });
+
+  test("delete single user - success", async () => {
+    await db.userStore.deleteUserById(multiTestUsers[0]._id);
+    const returnedUsers = await db.userStore.getAllUsers();
+    assert.equal(returnedUsers.length, multiTestUsers.length - 1);
+    const deletedUser = await db.userStore.getUserById(multiTestUsers[0]._id);
+    assert.isNull(deletedUser);
+  });
+
+  test("delete single user - fail", async () => {
+    await db.userStore.deleteUserById("bad-id");
+    const allUsers = await db.userStore.getAllUsers();
+    assert.equal(multiTestUsers.length, allUsers.length);
+  });
 });
