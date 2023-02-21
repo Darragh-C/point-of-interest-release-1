@@ -20,6 +20,13 @@
       "email": "bart@simpson.com",
       "password": "secret",
       "_id": "892c7e9e-a349-450e-a151-d7518bb7b7c8"
+    },
+    {
+      "firstName": "john",
+      "lastName": "doe",
+      "email": "john@doe.com",
+      "password": "test",
+      "_id": "317f9aac-306c-400c-b2ea-b9c74925f72c"
     }
   ]
 }
