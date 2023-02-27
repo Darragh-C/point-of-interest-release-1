@@ -76,6 +76,13 @@
       "email": "brian.cranston@mail.com",
       "password": "breakingbad",
       "_id": "9725c9af-ba8a-4b0f-8791-fd3de81507db"
+    },
+    {
+      "firstName": "ned",
+      "lastName": "flanders",
+      "email": "ned.flanders@mail.com",
+      "password": "secret",
+      "_id": "7fe3a09b-f01c-4ab9-b131-0e8281cff9cb"
     }
   ]
 }

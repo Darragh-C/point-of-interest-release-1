@@ -36,6 +36,14 @@
       "lattitude": "46.22",
       "longitude": "32.55",
       "_id": "63d782da-a4ac-4ae0-8a62-9fdab8d7e482"
+    },
+    {
+      "userid": "7fe3a09b-f01c-4ab9-b131-0e8281cff9cb",
+      "name": "Kinsale",
+      "description": "Town",
+      "lattitude": "46.22",
+      "longitude": "23.44",
+      "_id": "81d0f1ab-ed11-47bd-a46b-6dc4fe9d60d1"
     }
   ]
 }
