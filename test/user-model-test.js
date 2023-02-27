@@ -63,4 +63,20 @@ suite("User API tests", () => {
     const allUsers = await db.userStore.getAllUsers();
     assert.equal(multiTestUsers.length, allUsers.length);
   });
+
+  test("edit user firstname", async () => {
+    await db.userStore.addUser(johnDoe);
+    let user = await db.userStore.getUserById(johnDoe._id);
+    assert.equal(user.firstName, "John");
+    await db.userStore.editFirstname(user._id, "Brian");
+    assert.equal(user.firstName, "Brian");
+  })
+
+  test("edit user lastname", async () => {
+    await db.userStore.addUser(johnDoe);
+    let user = await db.userStore.getUserById(johnDoe._id);
+    assert.equal(user.lastName, "Doe");
+    await db.userStore.editLastname(user._id, "Cranston")
+    assert.equal(user.lastName, "Cranston");
+  })
 });

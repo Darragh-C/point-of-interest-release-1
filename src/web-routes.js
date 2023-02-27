@@ -18,4 +18,5 @@ export const webRoutes = [
   { method: "GET", path: "/about", config: aboutController.index },
 
   { method: "GET", path: "/settings", config: settingsController.index },
+  { method: "POST", path: "/settings/editname", config: settingsController.editName },
 ];

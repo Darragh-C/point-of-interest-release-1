@@ -44,4 +44,18 @@ export const userJsonStore = {
     db.data.users = [];
     await db.write();
   },
+
+  async editFirstname(user, updatedName) {
+    await db.read();
+    let userToUpdate = db.data.users.find((u) => u._id === user._id);
+    userToUpdate.firstName = updatedName.toString();
+    await db.write();
+  },
+
+  async editLastname(user, updatedName) {
+    await db.read();
+    let userToUpdate = db.data.users.find((u) => u._id === user._id);
+    userToUpdate.lastName = updatedName.toString();
+    await db.write();
+  },
 };
