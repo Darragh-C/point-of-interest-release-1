@@ -42,4 +42,70 @@ export const pinJsonStore = {
       db.data.pins = [];
       await db.write();
     },
+
+    async addDescTag(pinId, tag) {
+      await db.read();
+      const pin = this.getPinById(pinId)
+
+      let isLocked = false;
+      try {
+        pin.description = tag;
+      await db.write();
+      } catch (error) {
+        isLocked = true;
+      }
+
+      if (isLocked) {
+        console.log('Database file is locked.');
+      } else {
+        console.log('Database file is not locked.');
+      } 
+      
+    },
+
+    async addLattTag(pinId, tag) {
+      await db.read();
+      const pin = this.getPinById(pinId)
+
+      let isLocked = false;
+      try {
+        pin.lattitude = tag;
+        await db.write();
+      } catch (error) {
+        isLocked = true;
+      }
+
+      if (isLocked) {
+        console.log('Database file is locked.');
+      } else {
+        console.log('Database file is not locked.');
+      } 
+    },
+
+    async addLongTag(pinId, tag) {
+      await db.read();
+      const pin = this.getPinById(pinId)
+
+      let isLocked = false;
+      try {
+        pin.longitude = tag;
+      await db.write();
+      } catch (error) {
+        isLocked = true;
+      }
+
+      if (isLocked) {
+        console.log('Database file is locked.');
+      } else {
+        console.log('Database file is not locked.');
+      } 
+      
+    },
+
+    async updatePin(pin, updatedPin) {
+      pin.description = updatedPin.description;
+      pin.lattitude = updatedPin.lattitude;
+      pin.longitude = updatedPin.longitude;
+      await db.write();
+    },
   };

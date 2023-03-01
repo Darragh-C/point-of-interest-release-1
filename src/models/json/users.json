@@ -83,6 +83,13 @@
       "email": "ned.flanders@mail.com",
       "password": "secret",
       "_id": "7fe3a09b-f01c-4ab9-b131-0e8281cff9cb"
+    },
+    {
+      "firstName": "ned",
+      "lastName": "flanders",
+      "email": "ned.flanders@mail.com",
+      "password": "password",
+      "_id": "acca89a5-f105-4919-855d-77fa3eaef871"
     }
   ]
 }
