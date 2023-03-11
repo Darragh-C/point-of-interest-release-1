@@ -25,7 +25,10 @@ export const settingsController = {
         if (request.payload.lastname !== null) {
           userChanges.lastName = request.payload.lastname;
         }
-        await db.userStore.updateName(user, userChanges);
+        if (request.payload.password === user.password) {
+          await db.userStore.updateName(user, userChanges);
+        }
+        
         const updatedUser = await db.userStore.getUserById(loggedInUser._id);
         const viewData = {
           title: "User settings",
@@ -44,7 +47,9 @@ export const settingsController = {
         if (request.payload.email !== null) {
           userChanges.email = request.payload.email;
         }
-        await db.userStore.updateEmail(user, userChanges);
+        if (request.payload.password === user.password) {
+          await db.userStore.updateEmail(user, userChanges);
+        }
         const updatedUser = await db.userStore.getUserById(loggedInUser._id);
         const viewData = {
           title: "User settings",
@@ -63,7 +68,9 @@ export const settingsController = {
         if (request.payload.newpassword !== null) {
           userChanges.password = request.payload.newpassword;
         }
-        await db.userStore.updatePassword(user, userChanges);
+        if (request.payload.oldpassword === user.password) {
+          await db.userStore.updatePassword(user, userChanges);
+        }
         const updatedUser = await db.userStore.getUserById(loggedInUser._id);
         const viewData = {
           title: "User settings",
