@@ -27,6 +27,13 @@
       "email": "test@test.com",
       "password": "password",
       "_id": "8df507ee-fdea-4109-b913-89f597917b87"
+    },
+    {
+      "firstName": "Rod",
+      "lastName": "Flanders",
+      "email": "test@test.com",
+      "password": "password",
+      "_id": "fa301a53-3b45-499c-99e7-0c7a0861a529"
     }
   ]
 }

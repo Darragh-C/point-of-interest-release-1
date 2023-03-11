@@ -16,29 +16,61 @@ export const settingsController = {
 
   updateName: {
     handler: async function (request, h) {
-        const loggedInUser = request.auth.credentials;
+        let loggedInUser = request.auth.credentials;
         const user = await db.userStore.getUserById(loggedInUser._id);
-        /*
-        let updatedUser = {};
+        let userChanges = {};
         if (request.payload.firstname !== null) {
-          updatedUser.firstName = request.payload.firstname;
+          userChanges.firstName = request.payload.firstname;
         }
         if (request.payload.lastname !== null) {
-          updatedUser.lastName = request.payload.lastname;
+          userChanges.lastName = request.payload.lastname;
         }
-        
-        //if (user.password == request.payload.password) {
-        await db.userStore.updateName(user, updatedUser);
-        //} 
-        */
-        let testName = request.payload.firstname;
-        let testLName = request.payload.lastname;
+        await db.userStore.updateName(user, userChanges);
+        const updatedUser = await db.userStore.getUserById(loggedInUser._id);
         const viewData = {
           title: "User settings",
-          firstname: testName,//loggedInUser.firstName, 
-          lastname: testLName,//loggedInUser.lastName, 
+          firstname: updatedUser.firstName, 
+          lastname: updatedUser.lastName, 
         };
         return h.view("settings-view", viewData);
     }
   },
+
+  updateEmail: {
+    handler: async function (request, h) {
+        let loggedInUser = request.auth.credentials;
+        const user = await db.userStore.getUserById(loggedInUser._id);
+        let userChanges = {};
+        if (request.payload.email !== null) {
+          userChanges.email = request.payload.email;
+        }
+        await db.userStore.updateEmail(user, userChanges);
+        const updatedUser = await db.userStore.getUserById(loggedInUser._id);
+        const viewData = {
+          title: "User settings",
+          firstname: updatedUser.firstName, 
+          lastname: updatedUser.lastName, 
+        };
+        return h.view("settings-view", viewData);
+    }
+  },
+
+  updatePassword: {
+    handler: async function (request, h) {
+        let loggedInUser = request.auth.credentials;
+        const user = await db.userStore.getUserById(loggedInUser._id);
+        let userChanges = {};
+        if (request.payload.newpassword !== null) {
+          userChanges.password = request.payload.newpassword;
+        }
+        await db.userStore.updatePassword(user, userChanges);
+        const updatedUser = await db.userStore.getUserById(loggedInUser._id);
+        const viewData = {
+          title: "User settings",
+          firstname: updatedUser.firstName, 
+          lastname: updatedUser.lastName, 
+        };
+        return h.view("settings-view", viewData);
+    }
+  },  
 };
