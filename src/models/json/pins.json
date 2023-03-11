@@ -41,9 +41,17 @@
       "userid": "7fe3a09b-f01c-4ab9-b131-0e8281cff9cb",
       "name": "Kinsale",
       "description": "Lovely town",
-      "lattitude": "",
-      "longitude": "",
+      "lattitude": "46.22",
+      "longitude": "20.80",
       "_id": "81d0f1ab-ed11-47bd-a46b-6dc4fe9d60d1"
+    },
+    {
+      "userid": "cbedf2c0-d3aa-45b4-8afa-1d8335b681c3",
+      "name": "Springfield",
+      "_id": "93d6858d-1c02-4770-b5af-66709489c0d4",
+      "description": "Town",
+      "lattitude": "46.22",
+      "longitude": "56.77"
     }
   ]
 }

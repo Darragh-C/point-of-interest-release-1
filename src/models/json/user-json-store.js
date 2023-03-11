@@ -54,8 +54,43 @@ export const userJsonStore = {
 
   async editLastname(user, updatedName) {
     await db.read();
+
     let userToUpdate = db.data.users.find((u) => u._id === user._id);
     userToUpdate.lastName = updatedName.toString();
+    await db.write();
+  },
+
+  async updateName(user, updatedUser) {
+    await db.read();
+    let u = db.data.users.find((use) => use._id === user._id);
+    if (updatedUser.firstName !== null) {
+      u.firstName = updatedUser.firstName;
+    } else {
+      u.firstName = "Error";
+    }
+    if (updatedUser.lastName !== null) {
+      u.lastName = updatedUser.lastName;
+    } else {
+      u.lastName = "Error";
+    }
+    await db.write();
+  },
+
+  async updatePassword(user, updatedUser) {
+    await db.read();
+    let u = db.data.users.find((use) => use._id === user._id);
+    if (updatedUser.password !== null) {
+      u.password = updatedUser.password;
+    } 
+    await db.write();
+  },
+
+  async updateEmail(user, updatedUser) {
+    await db.read();
+    let u = db.data.users.find((use) => use._id === user._id);
+    if (updatedUser.email !== null) {
+      u.email = updatedUser.email;
+    } 
     await db.write();
   },
 };

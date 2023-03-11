@@ -64,19 +64,41 @@ suite("User API tests", () => {
     assert.equal(multiTestUsers.length, allUsers.length);
   });
 
-  test("edit user firstname", async () => {
-    await db.userStore.addUser(johnDoe);
-    let user = await db.userStore.getUserById(johnDoe._id);
-    assert.equal(user.firstName, "John");
-    await db.userStore.editFirstname(user._id, "Brian");
-    assert.equal(user.firstName, "Brian");
-  })
-
-  test("edit user lastname", async () => {
+  test("edit user name", async () => {
     await db.userStore.addUser(johnDoe);
     let user = await db.userStore.getUserById(johnDoe._id);
     assert.equal(user.lastName, "Doe");
-    await db.userStore.editLastname(user._id, "Cranston")
-    assert.equal(user.lastName, "Cranston");
+    let updatedUser = {
+        firstName: "Jiminy",
+        lastName: "Cricket",
+    };
+    await db.userStore.updateName(user, updatedUser);
+    user = await db.userStore.getUserById(johnDoe._id);
+    assert.equal(user.firstName, "Jiminy");
+    assert.equal(user.lastName, "Cricket");
+  })
+
+  test("edit user password", async () => {
+    await db.userStore.addUser(johnDoe);
+    let user = await db.userStore.getUserById(johnDoe._id);
+    assert.equal(user.lastName, "Doe");
+    let updatedUser = {
+        password: "test",
+    };
+    await db.userStore.updatePassword(user, updatedUser);
+    user = await db.userStore.getUserById(johnDoe._id);
+    assert.equal(user.password, "test");
+  })
+
+  test("edit user email", async () => {
+    await db.userStore.addUser(johnDoe);
+    let user = await db.userStore.getUserById(johnDoe._id);
+    assert.equal(user.lastName, "Doe");
+    let updatedUser = {
+        email: "test@test.com",
+    };
+    await db.userStore.updateEmail(user, updatedUser);
+    user = await db.userStore.getUserById(johnDoe._id);
+    assert.equal(user.email, "test@test.com");
   })
 });

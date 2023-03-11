@@ -22,5 +22,5 @@ export const webRoutes = [
   { method: "POST", path: "/pin/{id}/addtags", config: pinController.updatePin },
 
   { method: "GET", path: "/settings", config: settingsController.index },
-  { method: "POST", path: "/settings/editname", config: settingsController.editName },
+  { method: "POST", path: "/settings/updatename", config: settingsController.updateName },
 ];

@@ -14,14 +14,31 @@ export const settingsController = {
     },
   },
 
-  editName: {
+  updateName: {
     handler: async function (request, h) {
         const loggedInUser = request.auth.credentials;
-        if (request.password === loggedInUser.password) {
-            await db.userStore.editFirstname(loggedInUser, request.firstname);
-            await db.userStore.editLastname(loggedInUser, request.secondname);
+        const user = await db.userStore.getUserById(loggedInUser._id);
+        /*
+        let updatedUser = {};
+        if (request.payload.firstname !== null) {
+          updatedUser.firstName = request.payload.firstname;
         }
-        return h.redirect("/settings");
+        if (request.payload.lastname !== null) {
+          updatedUser.lastName = request.payload.lastname;
+        }
+        
+        //if (user.password == request.payload.password) {
+        await db.userStore.updateName(user, updatedUser);
+        //} 
+        */
+        let testName = request.payload.firstname;
+        let testLName = request.payload.lastname;
+        const viewData = {
+          title: "User settings",
+          firstname: testName,//loggedInUser.firstName, 
+          lastname: testLName,//loggedInUser.lastName, 
+        };
+        return h.view("settings-view", viewData);
     }
   },
 };

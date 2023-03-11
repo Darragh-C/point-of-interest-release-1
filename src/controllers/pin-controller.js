@@ -45,12 +45,10 @@ export const pinController = {
             const pinId = request.params.id;
             const pin = await db.pinStore.getPinById(pinId);
             let updatedPin = {
-                userid: loggedInUser._id,
                 name: request.payload.name,
                 description: request.payload.description,
                 lattitude: request.payload.lattitude,
                 longitude: request.payload.longitude,
-                _id: pinId,
             };
             await db.pinStore.updatePin(pin, updatedPin);
             const viewData = {
