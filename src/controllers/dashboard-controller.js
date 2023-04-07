@@ -6,10 +6,12 @@ export const dashboardController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       const pins = await db.pinStore.getUserPins(loggedInUser._id);
+      const categories = await db.categoryStore.getAllCategories();
       const viewData = {
         title: "Point of Interest Dashboard",
         user: loggedInUser,
         pins: pins,
+        categories: categories,
       };
       return h.view("dashboard-view", viewData);
     },

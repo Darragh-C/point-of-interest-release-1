@@ -14,11 +14,13 @@ export const UserCredentialsSpec = {
 
 export const PinSpec = {
   name: Joi.string().required(),
-};
-
-export const TagsSpec = {
   description: Joi.string().optional(),
   lattitude: Joi.string().optional(),
   longitude: Joi.string().optional(),
+};
+
+export const CategorySpec = {
+  //pinId: Joi.string().required(),
+  category: Joi.string().required(),
 };
 

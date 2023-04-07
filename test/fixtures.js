@@ -53,3 +53,22 @@ export const multiTestPins = [
         longitude: "55.45",
     },
 ];
+
+export const testCategory = {
+  category: "Public",
+};
+
+export const testCategories = [
+  {
+    category: "Road side",
+    pinId: "123",
+  },
+  {
+    category: "Height barrier",
+    pinId: "123",
+  },
+  {
+    category: "Business",
+    pinId: "456",
+  },
+];

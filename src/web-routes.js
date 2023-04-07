@@ -20,6 +20,7 @@ export const webRoutes = [
 
   { method: "GET", path: "/pin/{id}", config: pinController.index },
   { method: "POST", path: "/pin/{id}/addtags", config: pinController.updatePin },
+  { method: "POST", path: "/pin/{id}/addcategory", config: pinController.addCategory },
 
   { method: "GET", path: "/settings", config: settingsController.index },
   { method: "POST", path: "/settings/updatename", config: settingsController.updateName },
