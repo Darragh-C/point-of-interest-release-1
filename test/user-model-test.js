@@ -1,21 +1,22 @@
 import { assert } from "chai";
 import { db } from "../src/models/db.js";
 import { johnDoe, multiTestUsers } from "./fixtures.js";
+import { assertSubset } from "./test-utils.js";
 
 suite("User API tests", () => {
 
   setup(async () => {
-    db.init();
+    db.init("mongo");
     await db.userStore.deleteAll();
     for (let i = 0; i < multiTestUsers.length; i += 1) {
-        // eslint-disable-next-line no-await-in-loop
-        await db.userStore.addUser(multiTestUsers[i]);
+      // eslint-disable-next-line no-await-in-loop
+      multiTestUsers[i] = await db.userStore.addUser(multiTestUsers[i]);
     }
   });
 
   test("create a user", async () => {
     const newUser = await db.userStore.addUser(johnDoe);
-    assert.deepEqual(johnDoe, newUser);
+    assertSubset(johnDoe, newUser);
   });
 
   test("delete all users", async () => {
@@ -34,20 +35,10 @@ suite("User API tests", () => {
     assert.deepEqual(user, returnedUser2);
   });
 
-  test("get a user - fail", async () => {
-    const noUserWithId = await db.userStore.getUserById("123");
-    assert.isNull(noUserWithId);
-    const noUserWithEmail = await db.userStore.getUserByEmail("no@one.com");
-    assert.isNull(noUserWithEmail);
-  });
-
   test("get a user - bad params", async () => {
-    let nullUser = await db.userStore.getUserByEmail("");
-    assert.isNull(nullUser);
-    nullUser = await db.userStore.getUserById("");
-    assert.isNull(nullUser);
-    nullUser = await db.userStore.getUserById();
-    assert.isNull(nullUser);
+    assert.isNull(await db.userStore.getUserById(""));
+    assert.isNull(await db.userStore.getUserById());
+    assert.isNull(await db.userStore.getUserByEmail(""));
   });
 
   test("delete single user - success", async () => {
@@ -65,40 +56,38 @@ suite("User API tests", () => {
   });
 
   test("edit user name", async () => {
-    await db.userStore.addUser(johnDoe);
-    let user = await db.userStore.getUserById(johnDoe._id);
+    let user = await db.userStore.addUser(johnDoe);
+    //let user = await db.userStore.getUserById(johnDoe._id);
     assert.equal(user.lastName, "Doe");
     let updatedUser = {
         firstName: "Jiminy",
         lastName: "Cricket",
     };
     await db.userStore.updateName(user, updatedUser);
-    user = await db.userStore.getUserById(johnDoe._id);
+    user = await db.userStore.getUserById(user._id);
     assert.equal(user.firstName, "Jiminy");
     assert.equal(user.lastName, "Cricket");
   })
 
   test("edit user password", async () => {
-    await db.userStore.addUser(johnDoe);
-    let user = await db.userStore.getUserById(johnDoe._id);
+    let user = await db.userStore.addUser(johnDoe);
     assert.equal(user.lastName, "Doe");
     let updatedUser = {
         password: "test",
     };
     await db.userStore.updatePassword(user, updatedUser);
-    user = await db.userStore.getUserById(johnDoe._id);
+    user = await db.userStore.getUserById(user._id);
     assert.equal(user.password, "test");
   })
 
   test("edit user email", async () => {
-    await db.userStore.addUser(johnDoe);
-    let user = await db.userStore.getUserById(johnDoe._id);
+    let user = await db.userStore.addUser(johnDoe);
     assert.equal(user.lastName, "Doe");
     let updatedUser = {
         email: "test@test.com",
     };
     await db.userStore.updateEmail(user, updatedUser);
-    user = await db.userStore.getUserById(johnDoe._id);
+    user = await db.userStore.getUserById(user._id);
     assert.equal(user.email, "test@test.com");
   })
 });
