@@ -3,52 +3,17 @@
     {
       "category": "Road side",
       "pinId": "123",
-      "_id": "db958b2a-ae89-4485-a317-f31565e15ee9"
+      "_id": "0fc7abf7-e358-486e-8c11-074a99d9838d"
     },
     {
       "category": "Height barrier",
       "pinId": "123",
-      "_id": "9a4b751a-47cf-4bbc-8083-5a36a19f2e4c"
+      "_id": "1a4250f2-e76d-461b-8803-b3b2a547ecd9"
     },
     {
       "category": "Business",
       "pinId": "456",
-      "_id": "0ac3d97b-811f-4bf8-985c-4e5871fa8604"
-    },
-    {
-      "pinId": "aa130cf3-e548-4a03-ab8f-9512b9f2cdaa",
-      "category": "Road side",
-      "_id": "d75770d0-49f4-4096-ae07-1f0528a00359"
-    },
-    {
-      "pinId": "aa130cf3-e548-4a03-ab8f-9512b9f2cdaa",
-      "category": "Public parking",
-      "_id": "74e14afe-5bcc-4056-b308-276f709e7c84"
-    },
-    {
-      "pinId": "aa130cf3-e548-4a03-ab8f-9512b9f2cdaa",
-      "category": "Free",
-      "_id": "8cee3130-76b3-465b-be28-d32aed309852"
-    },
-    {
-      "pinId": "aa130cf3-e548-4a03-ab8f-9512b9f2cdaa",
-      "category": "Free",
-      "_id": "3bd4cc09-33bd-4770-af6e-fb9a6d1d41c1"
-    },
-    {
-      "pinId": "256708fb-cebf-4a3f-b260-bb0629a73116",
-      "category": "Road side",
-      "_id": "67eec2cb-4318-4c22-ba62-02b40fd53d7b"
-    },
-    {
-      "pinId": "256708fb-cebf-4a3f-b260-bb0629a73116",
-      "category": "Free",
-      "_id": "c81751c4-f4ea-464d-916a-0d2575041caa"
-    },
-    {
-      "pinId": "256708fb-cebf-4a3f-b260-bb0629a73116",
-      "category": "USA",
-      "_id": "376a215c-0ff3-4a5f-a4f9-0c84eaea01cb"
+      "_id": "118d787e-9607-480d-af98-f2b9c612eedb"
     }
   ]
 }
