@@ -8,12 +8,15 @@ export const pinController = {
       const loggedInUser = request.auth.credentials;
       const pin = await db.pinStore.getPinById(pinId);
       const categories = await db.categoryStore.getPinCategories(pinId);
+      console.log(categories);
+      console.log("test");
       const viewData = {
         title: "Pin tags",
         user: loggedInUser,
         pin: pin,
         categories: categories,
       };
+      console.log("Rendering pin view");
       return h.view("pin-view", viewData);
     },
   },

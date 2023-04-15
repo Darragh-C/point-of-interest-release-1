@@ -20,7 +20,6 @@ export const PinSpec = {
 };
 
 export const CategorySpec = {
-  //pinId: Joi.string().required(),
   category: Joi.string().required(),
 };
 

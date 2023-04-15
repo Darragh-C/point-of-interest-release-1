@@ -6,4 +6,4 @@ const categorySchema = new Schema({
   category: String,
 });
 
-export const Category = Mongoose.model("Pin", categorySchema);
+export const Category = Mongoose.model("Category", categorySchema);

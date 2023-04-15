@@ -19,6 +19,20 @@ export const pinMongoStore = {
       return null;
     },
 
+    async getPinsById(idArray) {
+      console.log("running getpinsbyid")
+      if (idArray) {
+        const pins = await Pin.find({ _id: { $in: idArray } }).lean();
+        console.log(pins);
+        if (pins) {
+          return pins;
+        } else {
+          return null;  
+        }
+      }
+      return null;
+    },
+
     async getPinCategory(id) {
       const pin = await Pin.findOne({ _id: id}).lean();
       return pin.category;

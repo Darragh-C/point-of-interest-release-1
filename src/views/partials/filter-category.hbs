@@ -2,11 +2,11 @@
   <div class="field is-horizontal">
     <div class="field-body">
       <div class="field">
-          <label class="label">Filter:</label>
+          <label class="label">Filter pins by category:</label>
           <div class="control">
               <div class="select">
                   <select name="filter">
-                    {{#each categories}}
+                    {{#each distinctcategories}}
                       <option value="{{category}}">{{category}}</option>
                     {{/each}}
                   </select>

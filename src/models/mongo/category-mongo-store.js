@@ -18,15 +18,63 @@ export const categoryMongoStore = {
     }
     return null;
   },
-  
-  async getUserCategories(userId) {
-    const categories = Category.find({ userid: userId }).lean();
-    return categories;
-  },
 
   async getPinCategories(pinid) {
     const pinCategories = Category.find({ pinId: pinid }).lean();
     return pinCategories;
+  },
+
+  async getPinCategoriesDistinct(pins) {
+    const distCat = Category.aggregate([
+      { 
+        $match : { 
+          pinId: { 
+            $in: pins
+          }
+        }
+      },
+      { 
+        $group : { 
+          _id: "$category",  
+        } 
+      }, 
+      { $project: { 
+          category: "$_id", 
+          _id:0 
+        }
+      }
+    ]);
+    if (distCat === undefined) distCat = null;
+    return distCat;
+  },
+
+  async getDistinctCategories() {
+    const distCat = Category.aggregate([
+      { 
+        $group : { 
+          _id: "$category",  
+        } 
+      }, 
+      { $project: { 
+          category: "$_id", 
+          _id:0 
+        }
+      }
+    ]);
+    if (distCat === undefined) distCat = null;
+    return distCat;
+  },
+
+  async filterCategoryObjs(category) {
+    if (category) {
+      const categoryObjs = await Category.find( { category: category } ).lean();
+      if (categoryObjs) {
+        return categoryObjs;
+      } else {
+        return null;
+      }
+    }
+    return null;
   },
   
   async addCategory(category) {

@@ -61,14 +61,11 @@ export const testCategory = {
 export const testCategories = [
   {
     category: "Road side",
-    pinId: "123",
   },
   {
     category: "Height barrier",
-    pinId: "123",
   },
   {
     category: "Business",
-    pinId: "456",
   },
 ];

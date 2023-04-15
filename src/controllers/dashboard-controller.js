@@ -1,17 +1,21 @@
 import { db } from "../models/db.js";
 import { PinSpec } from "../models/joi-schemas.js";
+import { pinUtils } from "../utils/pin-utils.js";
+import { categoryUtils } from "../utils/category-utils.js";
 
 export const dashboardController = {
   index: {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
-      const pins = await db.pinStore.getUserPins(loggedInUser._id);
+      const userPins = await db.pinStore.getUserPins(loggedInUser._id);
+      const pinIds = await pinUtils.getPinsIds(userPins);
+      const distinctCategories = await db.categoryStore.getPinCategoriesDistinct(pinIds);
       const categories = await db.categoryStore.getAllCategories();
       const viewData = {
         title: "Point of Interest Dashboard",
         user: loggedInUser,
-        pins: pins,
-        categories: categories,
+        pins: userPins,
+        distinctcategories: distinctCategories,
       };
       return h.view("dashboard-view", viewData);
     },
@@ -42,8 +46,61 @@ export const dashboardController = {
   deletePin: {
     handler: async function (request, h) {
       const pin = await db.pinStore.getPinById(request.params.id);
+      console.log(request.params.id);
       await db.pinStore.deletePinById(pin._id);
       return h.redirect("/dashboard");   
     }
-  }
+  },
+
+  filterCategory: {
+    handler: async function (request, h) {
+      const loggedInUser = request.auth.credentials;
+      const categoryObjs = await db.categoryStore.filterCategoryObjs(request.payload.filter);
+      const filteredPins = [];
+      for (let i = 0; i < categoryObjs.length; i+=1) {
+        if (categoryObjs[i].userid == loggedInUser._id) {
+          const pin = await db.pinStore.getPinById(categoryObjs[i].pinId);
+          filteredPins.push(pin);
+        }
+      }
+      const userPins = await db.pinStore.getUserPins(loggedInUser._id);
+      const distinctCategories = await db.categoryStore.getPinCategoriesDistinct(await pinUtils.getPinsIds(userPins))
+      const viewData = {
+        title: "Point of Interest Dashboard",
+        user: loggedInUser,
+        pins: filteredPins, 
+        distinctcategories: distinctCategories,
+      };
+      return h.view("dashboard-view", viewData);
+    },
+  },
 };
+
+      /*
+      console.log("test");
+      console.log(request.payload.filter);
+      const categoryObjs = await db.categoryStore.getCatObjsByCategory(request.payload.filter);
+      console.log(categoryObjs);
+      const pinIds = categoryUtils.getPinsIds(categoryObjs);
+      console.log(pinIds);
+      console.log("about to filter");
+      const filteredPins = await db.pinStore.getPinsById(pinIds);
+      console.log("filteredPins");
+      console.log(filteredPins);
+      */
+/*
+      const loggedInUser = request.auth.credentials;
+      const pins = await db.pinStore.getUserPins(loggedInUser._id);
+      //console.log(`All pins: ${pins}`);
+      const pinIds = await pinUtils.getPinsIds(pins);
+      const distinctCategories = await db.categoryStore.getPinCategoriesDistinct(pinIds);
+      const categories = await db.categoryStore.getAllCategories();
+
+      const viewData = {
+        title: "Filtered pins",
+        pins: filteredPins,
+        categories: categories,
+        distinctcategories: distinctCategories,
+      };
+      return h.view("dashboard-view", viewData);
+*/

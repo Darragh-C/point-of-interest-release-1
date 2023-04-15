@@ -8,6 +8,7 @@ import { categoryJsonStore } from "./json/category-json-store.js";
 import { connectMongo } from "./mongo/connect.js";
 import { userMongoStore } from "./mongo/user-mongo-store.js";
 import { pinMongoStore } from "./mongo/pin-mongo-store.js";
+import { categoryMongoStore } from "./mongo/category-mongo-store.js";
 
 export const db = {
   userStore: null,
@@ -30,6 +31,7 @@ export const db = {
       case "mongo":
         this.userStore = userMongoStore;
         this.pinStore = pinMongoStore;
+        this.categoryStore = categoryMongoStore;
         connectMongo();
         break;
       default:

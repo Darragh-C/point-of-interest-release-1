@@ -15,6 +15,7 @@ export const webRoutes = [
   { method: "GET", path: "/dashboard", config: dashboardController.index },
   { method: "POST", path: "/dashboard/addpin", config: dashboardController.addPin },
   { method: "GET", path: "/dashboard/deletepin/{id}", config: dashboardController.deletePin },
+  { method: "POST", path: "/dashboard/filtercategory", config: dashboardController.filterCategory },
 
   { method: "GET", path: "/about", config: aboutController.index },
 
