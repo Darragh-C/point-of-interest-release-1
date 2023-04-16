@@ -1,7 +1,7 @@
 import { assert, expect } from "chai";
-import { db } from "../src/models/db.js";
-import { testPin, multiTestPins } from "./fixtures.js";
-import { assertSubset } from "./test-utils.js";
+import { db } from "../../src/models/db.js";
+import { testPin, multiTestPins } from "../fixtures.js";
+import { assertSubset } from "../test-utils.js";
 
 suite("Pin Model tests", () => {
     
