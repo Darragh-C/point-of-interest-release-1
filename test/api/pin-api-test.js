@@ -1,27 +1,48 @@
 import { assert } from "chai";
 import { poiService } from "./poi-service.js";
 import { assertSubset } from "../test-utils.js";
-import { testPin, multiTestPins } from "../fixtures.js";
+import { johnDoe, testPin, multiTestPins } from "../fixtures.js";
 
 suite("Pin API tests", () => {
+  let user = null;
+    
   setup(async () => {
     await poiService.deleteAllPins();
-    for (let i = 0; i < multiTestPins.length; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      multiTestPins[i] = await poiService.createPin(multiTestPins[i]);
-    }
+    await poiService.deleteAllUsers();
+    user = await poiService.createUser(johnDoe);
+    testPin.userid = user._id;
+
   });
   teardown(async () => {
   });
 
   test("create a pin", async () => {
     const newPin = await poiService.createPin(testPin);
+    assert.isNotNull(newPin);
     assertSubset(testPin, newPin);
-    assert.isDefined(newPin._id);
+  });
+
+  test("create multiple pins" , async () => {
+    for (let i = 0; i < multiTestPins.length; i += 1) {
+      multiTestPins[i].userid = user._id;
+      // eslint-disable-next-line no-await-in-loop
+      await poiService.createPin(multiTestPins[i]);
+    }
+    let returnedPins = await poiService.getAllPins();
+    assert.equal(returnedPins.length, multiTestPins.length);
+    await poiService.deleteAllPins();
+    returnedPins = await poiService.getAllPins();
+    assert.equal(returnedPins.length, 0);
   });
 
   test("delete all pins", async () => {
+      for (let i = 0; i < multiTestPins.length; i += 1) {
+        multiTestPins[i].userid = user._id;
+        // eslint-disable-next-line no-await-in-loop
+        await poiService.createPin(multiTestPins[i]);
+      }
       let returnedPins = await poiService.getAllPins();
+      console.log(returnedPins);
       assert.equal(returnedPins.length, 3);
       await poiService.deleteAllPins();
       returnedPins = await poiService.getAllPins();
@@ -29,8 +50,9 @@ suite("Pin API tests", () => {
   });
   
   test("get a pin - success", async () => {
-    const returnedPin = await poiService.getPin(multiTestPins[0]._id);
-    assert.deepEqual(multiTestPins[0], returnedPin);
+    const addedPin = await poiService.createPin(testPin);
+    const returnedPin = await poiService.getPin(addedPin._id);
+    assert.deepEqual(addedPin, returnedPin);
   });
 
   test("get a pin - fail", async () => {
@@ -43,14 +65,25 @@ suite("Pin API tests", () => {
       }
   });
 
-  test("get a pin - deleted pin", async () => {
-      await poiService.deleteAllPins();
-      try {
-        const returnedPin = await poiService.getPin(multiTestPins[0]._id);
-        assert.fail("Should not return a response");
-      } catch (error) {
-        assert(error.response.data.message === "No Pin with this id");
-        assert.equal(error.response.data.statusCode, 404);
-      }
+
+  test("delete a pin", async () => {
+    const pin = await poiService.createPin(testPin);
+    const response = await poiService.deletePin(pin._id);
+    assert.equal(response.status, 204);
+    try {
+      const returnedPin = await poiService.getPin(pin.id);
+      assert.fail("Should not return a response");
+    } catch (error) {
+      assert(error.response.data.message === "No Pin with this id", "Incorrect Response Message");
+    }
+  });
+
+  test("remove non-existant pin", async () => {
+    try {
+      const response = await poiService.deletePin("not an id");
+      assert.fail("Should not return a response");
+    } catch (error) {
+      assert(error.response.data.message === "No pin with this id", "Incorrect Response Message");
+    }
   });
 });

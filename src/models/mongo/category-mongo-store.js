@@ -1,5 +1,5 @@
 import { Category } from "./category.js";
-import mongoose from 'mongoose';
+import { Pin } from "./pin.js";
 
 export const categoryMongoStore = {
   async getAllCategories() {
@@ -77,7 +77,8 @@ export const categoryMongoStore = {
     return null;
   },
   
-  async addCategory(category) {
+  async addCategory(pinId, category) {
+    category.pinId = pinId;
     const newCategory = new Category(category);
     const categoryObj = await newCategory.save();
     const c = await this.getCategoryById(categoryObj._id);

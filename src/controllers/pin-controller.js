@@ -31,10 +31,9 @@ export const pinController = {
     handler: async function (request, h) {
       const pinid = request.params.id;
       const newCategory = {
-        pinId: pinid,
         category: request.payload.category,
       }; 
-      await db.categoryStore.addCategory(newCategory);
+      await db.categoryStore.addCategory(pinid, newCategory);
       return h.redirect(`/pin/${pinid}`);
     }
   },

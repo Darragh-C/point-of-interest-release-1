@@ -16,6 +16,9 @@ export const pinApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create pin",
+    notes: "Creates a pin with the pinApi",
   },
 
   find: {
@@ -28,6 +31,9 @@ export const pinApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get pins",
+    notes: "Gets alls pins with the pinApi",
   },
 
   findOne: {
@@ -43,17 +49,42 @@ export const pinApi = {
         return Boom.serverUnavailable("No Pin with this id");
       }
     },
+    tags: ["api"],
+    description: "Get user",
+    notes: "Gets a pin with the pinApi when you pass its id",
+  },
+
+  deleteOne: {
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const pin = await db.pinStore.getPinById(request.params.id);
+        if (!pin) {
+          return Boom.notFound("No pin with this id");
+        }
+        await db.pinStore.deletePinById(pin._id);
+        return h.response().code(204);
+      } catch (err) {
+        return Boom.serverUnavailable("No pin with this id");
+      }
+    },
+    tags: ["api"],
+    description: "Deletes a pin",
+    notes: "Deletes a pin when you pass its id",
   },
   
   deleteAll: {
     auth: false,
     handler: async function (request, h) {
-        try {
+      try {
         await db.pinStore.deleteAll();
         return h.response().code(204);
-        } catch (err) {
+      } catch (err) {
         return Boom.serverUnavailable("Database Error");
-        }
+      }
     },
+    tags: ["api"],
+    description: "Delete pins",
+    notes: "Deletes all pins with the pinApi",
   },  
 };

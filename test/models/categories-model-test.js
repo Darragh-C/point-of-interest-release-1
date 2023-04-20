@@ -3,7 +3,7 @@ import { db } from "../../src/models/db.js";
 import { testCategory, testCategories, multiTestPins, testPin } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
-suite("Category API tests", () => {
+suite("Category Model tests", () => {
     
    setup(async () => {
         db.init("mongo");

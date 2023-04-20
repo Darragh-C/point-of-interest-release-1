@@ -1,5 +1,6 @@
 import { userApi } from "./api/user-api.js";
 import { pinApi } from "./api/pin-api.js";
+import { categoryApi } from "./api/category-api.js";
 
 export const apiRoutes = [
   { method: "GET", path: "/api/users", config: userApi.find },
@@ -11,4 +12,11 @@ export const apiRoutes = [
   { method: "POST", path: "/api/pins", config: pinApi.create },
   { method: "DELETE", path: "/api/pins", config: pinApi.deleteAll },
   { method: "GET", path: "/api/pins/{id}", config: pinApi.findOne }, 
+  { method: "DELETE", path: "/api/pins/{id}", config: pinApi.deleteOne },
+
+  { method: "GET", path: "/api/categories", config: categoryApi.find },
+  { method: "POST", path: "/api/pins/{id}/categories", config: categoryApi.create },
+  { method: "DELETE", path: "/api/categories", config: categoryApi.deleteAll },
+  { method: "GET", path: "/api/categories/{id}", config: categoryApi.findOne }, 
+  { method: "DELETE", path: "/api/categories/{id}", config: categoryApi.deleteOne },
 ];
