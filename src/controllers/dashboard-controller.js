@@ -10,6 +10,7 @@ export const dashboardController = {
       const userPins = await db.pinStore.getUserPins(loggedInUser._id);
       const pinIds = await pinUtils.getPinsIds(userPins);
       const distinctCategories = await db.categoryStore.getPinCategoriesDistinct(pinIds);
+      console.log(`distinct: ${distinctCategories}`);
       const categories = await db.categoryStore.getAllCategories();
       const viewData = {
         title: "Point of Interest Dashboard",
@@ -56,15 +57,16 @@ export const dashboardController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       const categoryObjs = await db.categoryStore.filterCategoryObjs(request.payload.filter);
+      console.log(`cat objects: ${categoryObjs}`);
       const filteredPins = [];
       for (let i = 0; i < categoryObjs.length; i+=1) {
-        if (categoryObjs[i].userid == loggedInUser._id) {
           const pin = await db.pinStore.getPinById(categoryObjs[i].pinId);
           filteredPins.push(pin);
-        }
       }
+      console.log(`filteredPins: ${filteredPins}`);
       const userPins = await db.pinStore.getUserPins(loggedInUser._id);
-      const distinctCategories = await db.categoryStore.getPinCategoriesDistinct(await pinUtils.getPinsIds(userPins))
+      const distinctCategories = await db.categoryStore.getPinCategoriesDistinct(await pinUtils.getPinsIds(userPins));
+      console.log(`distinct: ${distinctCategories}`);
       const viewData = {
         title: "Point of Interest Dashboard",
         user: loggedInUser,

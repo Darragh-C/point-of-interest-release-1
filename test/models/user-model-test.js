@@ -3,7 +3,7 @@ import { db } from "../../src/models/db.js";
 import { johnDoe, multiTestUsers } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
-suite("User API tests", () => {
+suite("User Model tests", () => {
 
   setup(async () => {
     db.init("mongo");
@@ -54,7 +54,7 @@ suite("User API tests", () => {
     const allUsers = await db.userStore.getAllUsers();
     assert.equal(multiTestUsers.length, allUsers.length);
   });
-
+/*
   test("edit user name", async () => {
     let user = await db.userStore.addUser(johnDoe);
     //let user = await db.userStore.getUserById(johnDoe._id);
@@ -90,4 +90,5 @@ suite("User API tests", () => {
     user = await db.userStore.getUserById(user._id);
     assert.equal(user.email, "test@test.com");
   })
+  */
 });

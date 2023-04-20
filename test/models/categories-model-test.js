@@ -4,31 +4,33 @@ import { testCategory, testCategories, multiTestPins, testPin } from "../fixture
 import { assertSubset } from "../test-utils.js";
 
 suite("Category Model tests", () => {
+    let pin = null;
     
    setup(async () => {
         db.init("mongo");
         await db.categoryStore.deleteAllCategories();
         await db.pinStore.deleteAll();
         // add pins
-        let pins = [];  
+        
+        let pin = await db.pinStore.addPin(testPin); 
+        /* 
         for (let i = 0; i < multiTestPins.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
             const pin = await db.pinStore.addPin(multiTestPins[i]);
             pins.push(pin);
         }
+        */
         // add a category to each pin in multitestpins
         for (let i = 0; i < testCategories.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
-            const category = {
-                pinId: pins[i]._id,
-                category: testCategories[i].category,
-            };
-            await db.categoryStore.addCategory(category);
+            await db.categoryStore.addCategory(pin._id, testCategories[i]);
         }
     });
 
     test("create a category", async () => {
-        const newCategory = await db.categoryStore.addCategory(testCategory);
+        const pin = await db.pinStore.addPin(testPin);
+        const newCategory = await db.categoryStore.addCategory(pin._id, testCategory);
+        assert.isNotNull(newCategory._id);
         assertSubset(testCategory, newCategory);
     });
 
@@ -42,7 +44,8 @@ suite("Category Model tests", () => {
     });
 
     test("get a category by id - success", async () => {
-        const category = await db.categoryStore.addCategory(testCategory);
+        const pin = await db.pinStore.addPin(testPin);
+        const category = await db.categoryStore.addCategory(pin._id, testCategory);
         const returnedCategory = await db.categoryStore.getCategoryById(category._id);
         assert.deepEqual(category, returnedCategory);
     });
@@ -61,15 +64,11 @@ suite("Category Model tests", () => {
 
     test("get a pin's categories", async () => {
       // add all categories to testPin
-      const pin = db.pinStore.addPin(testPin);
+      const pin = await db.pinStore.addPin(testPin);
       for (let i = 0; i < testCategories.length; i += 1) {
-          // eslint-disable-next-line no-await-in-loop
-          const pinCategory = {
-              pinId: pin._id,
-              category: testCategories[i].category,  
-          };
-          await db.categoryStore.addCategory(pinCategory);
-      }
+        // eslint-disable-next-line no-await-in-loop
+        await db.categoryStore.addCategory(pin._id, testCategories[i]);
+    }
       const pinCategories = await db.categoryStore.getPinCategories(pin._id);
       assertSubset(pinCategories, testCategories);
     });
@@ -96,11 +95,7 @@ suite("Category Model tests", () => {
       const pin = db.pinStore.addPin(testPin);
       for (let i = 0; i < testCategories.length; i += 1) {
           // eslint-disable-next-line no-await-in-loop
-          const pinCategory = {
-              pinId: pin._id,
-              category: testCategories[i].category,  
-          };
-          await db.categoryStore.addCategory(pinCategory);
+          await db.categoryStore.addCategory(pin._id, testCategories[i]);
       } 
       // tests the duplicate categories added
       const updatedCategories = await db.categoryStore.getAllCategories();
@@ -117,11 +112,7 @@ suite("Category Model tests", () => {
         for (let i = 0; i < 2; i += 1) {
             for (let j = 0; j < testCategories.length; j += 1) {
                 // eslint-disable-next-line no-await-in-loop
-                const pinCategory = {
-                    pinId: pin._id,
-                    category: testCategories[j].category,  
-                };
-                await db.categoryStore.addCategory(pinCategory);
+                await db.categoryStore.addCategory(pin._id, testCategories[j]);
             } 
         }
         const pinIdArray = [pin._id];
@@ -130,13 +121,11 @@ suite("Category Model tests", () => {
     });
 
     test("filter categories (objects)", async () => {
+        const pin = db.pinStore.addPin(testPin);
         //add duplicate categories
         for (let i = 0; i < testCategories.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
-            const newCategory = {
-                category: testCategories[i].category,  
-            };
-            await db.categoryStore.addCategory(newCategory);
+            await db.categoryStore.addCategory(pin._id, testCategories[i]);
         } 
         const allCategories = await db.categoryStore.getAllCategories();
         //make first category the filter
