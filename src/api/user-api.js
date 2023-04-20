@@ -1,5 +1,7 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { UserArray, IdSpec, UserSpec } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const userApi = {
   find: {
@@ -15,6 +17,7 @@ export const userApi = {
     tags: ["api"],
     description: "Get all users",
     notes: "Returns all users with the userApi",
+    response: { schema: UserArray, failAction: validationError }
   },
 
   findOne: {
@@ -33,6 +36,8 @@ export const userApi = {
     tags: ["api"],
     description: "Get user",
     notes: "Gets one user with the userApi when you pass its id",
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: UserSpec, failAction: validationError },
   },
 
   create: {
@@ -51,6 +56,8 @@ export const userApi = {
     tags: ["api"],
     description: "Create user",
     notes: "Creates a user with the userApi",
+    validate: { payload: UserSpec, failAction: validationError },
+    response: { schema: UserSpec, failAction: validationError },
   },
 
   deleteAll: {

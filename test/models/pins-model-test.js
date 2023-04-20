@@ -2,6 +2,9 @@ import { assert, expect } from "chai";
 import { db } from "../../src/models/db.js";
 import { testPin, multiTestPins } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
+import { EventEmitter } from "events";
+
+EventEmitter.setMaxListeners(25);
 
 suite("Pin Model tests", () => {
     

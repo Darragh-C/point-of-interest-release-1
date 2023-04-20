@@ -2,6 +2,9 @@ import { assert } from "chai";
 import { poiService } from "./poi-service.js";
 import { assertSubset } from "../test-utils.js";
 import { johnDoe, multiTestUsers } from "../fixtures.js";
+import { EventEmitter } from "events";
+
+EventEmitter.setMaxListeners(25);
 
 suite("User API tests", () => {
   setup(async () => {

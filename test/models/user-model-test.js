@@ -2,6 +2,9 @@ import { assert } from "chai";
 import { db } from "../../src/models/db.js";
 import { johnDoe, multiTestUsers } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
+import { EventEmitter } from "events";
+
+EventEmitter.setMaxListeners(25);
 
 suite("User Model tests", () => {
 
