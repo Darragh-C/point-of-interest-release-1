@@ -55,3 +55,9 @@ export const CategorySpecPlus = CategorySpec.keys({
 
 export const CategoryArraySpec = Joi.array().items(CategorySpecPlus).label("CategoryArray");
 
+export const JwtAuth = Joi.object()
+  .keys({
+    success: Joi.boolean().example("true").required(),
+    token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
+  })
+  .label("JwtAuth");

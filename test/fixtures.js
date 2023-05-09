@@ -1,9 +1,16 @@
+
+
 export const johnDoe = {
-    firstName: "John",
-    lastName: "Doe",
-    email: "john@doe.com",
-    password: "password",
-  };
+  firstName: "John",
+  lastName: "Doe",
+  email: "john@doe.com",
+  password: "password",
+};
+
+export const johnDoeCredentials = {
+  email: "john@doe.com",
+  password: "password",
+};
 
 export const multiTestUsers = [
 {

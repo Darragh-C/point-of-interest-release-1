@@ -19,4 +19,6 @@ export const apiRoutes = [
   { method: "DELETE", path: "/api/categories", config: categoryApi.deleteAll },
   { method: "GET", path: "/api/categories/{id}", config: categoryApi.findOne }, 
   { method: "DELETE", path: "/api/categories/{id}", config: categoryApi.deleteOne },
+
+  { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
 ];

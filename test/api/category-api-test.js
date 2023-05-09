@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { poiService } from "./poi-service.js";
 import { assertSubset } from "../test-utils.js";
-import { johnDoe, testPin, multiTestPins, testCategory, testCategories } from "../fixtures.js";
+import { johnDoe, johnDoeCredentials, testPin, multiTestPins, testCategory, testCategories } from "../fixtures.js";
 import { EventEmitter } from "events";
 
 EventEmitter.setMaxListeners(25);
@@ -11,14 +11,16 @@ suite("Category API tests", () => {
   let pin = null;
 
   setup(async () => {
-    await poiService.deleteAllPins();
-    await poiService.deleteAllUsers();
-    await poiService.deleteAllCategories();
+    poiService.clearAuth();
     user = await poiService.createUser(johnDoe);
-    console.log(user);
+    await poiService.authenticate(johnDoeCredentials);
+    await poiService.deleteAllPins();
+    await poiService.deleteAllCategories();
+    await poiService.deleteAllUsers();
+    user = await poiService.createUser(johnDoe);
+    await poiService.authenticate(johnDoeCredentials);
     testPin.userid = user._id;
     pin = await poiService.createPin(testPin);
-    console.log(pin);
   });
   teardown(async () => {
   });

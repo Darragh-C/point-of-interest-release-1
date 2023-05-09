@@ -1,6 +1,5 @@
 import axios from "axios";
-
-import { serviceUrl } from "../fixtures.js";
+import { johnDoe, serviceUrl } from "../fixtures.js";
 
 export const poiService = {
   poiUrl: serviceUrl,
@@ -23,6 +22,16 @@ export const poiService = {
   async deleteAllUsers() {
     const res = await axios.delete(`${this.poiUrl}/api/users`);
     return res.data;
+  },
+
+  async authenticate(user) {
+    const response = await axios.post(`${this.poiUrl}/api/users/authenticate`, user);
+    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+    return response.data;
+  },
+
+  async clearAuth() {
+    axios.defaults.headers.common["Authorization"] = "";
   },
 
   //Pin API
