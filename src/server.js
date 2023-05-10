@@ -1,19 +1,19 @@
-import Inert from "@hapi/inert";
-import Vision from "@hapi/vision";
-import Hapi from "@hapi/hapi";
-import Cookie from "@hapi/cookie";
-import dotenv from "dotenv";
-import path from "path";
-import Joi from "joi";
-import jwt from "hapi-auth-jwt2";
-import HapiSwagger from "hapi-swagger";
-import { fileURLToPath } from "url";
-import Handlebars from "handlebars";
-import { webRoutes } from "./web-routes.js";
-import { db } from "./models/db.js";
-import { accountsController } from "./controllers/accounts-controller.js";
-import { validate } from "./api/jwt-utils.js";
-import { apiRoutes } from "./api-routes.js";
+const Inert = require('@hapi/inert');
+const Vision = require('@hapi/vision');
+const Hapi = require('@hapi/hapi');
+const Cookie = require('@hapi/cookie');
+const dotenv = require('dotenv');
+const path = require('path');
+const Joi = require('joi');
+const jwt = require('hapi-auth-jwt2');
+const HapiSwagger = require('hapi-swagger');
+const { fileURLToPath } = require('url');
+const Handlebars = require('handlebars');
+const { webRoutes } = require('./web-routes.js');
+const { db } = require('./models/db.js');
+const { accountsController } = require('./controllers/accounts-controller.js');
+const { validate } = require('./api/jwt-utils.js');
+const { apiRoutes } = require('./api-routes.js');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,14 +26,14 @@ if (result.error) {
 
 const swaggerOptions = {
   info: {
-    title: "POI API",
-    version: "0.1",
+    title: 'POI API',
+    version: '0.1',
   },
   securityDefinitions: {
     jwt: {
-      type: "apiKey",
-      name: "Authorization",
-      in: "header",
+      type: 'apiKey',
+      name: 'Authorization',
+      in: 'header',
     },
   },
   security: [{ jwt: [] }],
@@ -65,37 +65,37 @@ async function init() {
       hbs: Handlebars,
     },
     relativeTo: __dirname,
-    path: "./views",
-    layoutPath: "./views/layouts",
-    partialsPath: "./views/partials",
+    path: './views',
+    layoutPath: './views/layouts',
+    partialsPath: './views/partials',
     layout: true,
     isCached: false,
   });
 
-  server.auth.strategy("session", "cookie", {
+  server.auth.strategy('session', 'cookie', {
     cookie: {
       name: process.env.COOKIE_NAME,
       password: process.env.COOKIE_PASSWORD,
       isSecure: false,
     },
-    redirectTo: "/",
+    redirectTo: '/',
     validate: accountsController.validate,
   });
-  server.auth.strategy("jwt", "jwt", {
+  server.auth.strategy('jwt', 'jwt', {
     key: process.env.COOKIE_PASSWORD,
     validate: validate,
-    verifyOptions: { algorithms: ["HS256"] }
+    verifyOptions: { algorithms: ['HS256'] }
   });
-  server.auth.default("session");
+  server.auth.default('session');
 
-  db.init("mongo");
+  db.init('mongo');
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();
-  console.log("Server running on %s", server.info.uri);
+  console.log('Server running on %s', server.info.uri);
 }
 
-process.on("unhandledRejection", (err) => {
+process.on('unhandledRejection', (err) => {
   console.log(err);
   process.exit(1);
 });
