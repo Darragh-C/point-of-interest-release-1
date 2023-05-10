@@ -77,4 +77,4 @@ export const testCategories = [
   },
 ];
 
-export const serviceUrl = "http://localhost:4000";
+export const serviceUrl = "http://localhost:3000";
