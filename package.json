@@ -1,14 +1,14 @@
 {
-  "name": "playtime",
+  "name": "camperpins",
   "version": "0.1.0",
-  "description": "Playtime: a Hapi/node application for managing Playlists",
-  "main": "src/server.js",
+  "description": "Add pins",
+  "main": "src/server.cjs",
   "type": "module",
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node src/server.cjs",
     "lint": "./node_modules/.bin/eslint . --ext .js",
     "test": "./node_modules/mocha/bin/_mocha --ui tdd test/**/*.js -exit",
     "dev": "./node_modules/.bin/nodemon  src/server.js"
