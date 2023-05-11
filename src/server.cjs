@@ -15,7 +15,7 @@ const { accountsController } = require('./controllers/accounts-controller.js');
 const { validate } = require('./api/jwt-utils.js');
 const { apiRoutes } = require('./api-routes.js');
 
-const __filename = fileURLToPath(import.meta.url);
+/*const __filename = fileURLToPath(import.meta.url);*/
 const __dirname = path.dirname(__filename);
 
 const result = dotenv.config();
