@@ -2,7 +2,7 @@
   "name": "camperpins",
   "version": "0.1.0",
   "description": "Add pins",
-  "main": "src/server.cjs",
+  "main": "src/server.js",
   "type": "module",
   "engines": {
     "node": ">=18.0.0"
