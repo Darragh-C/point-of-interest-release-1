@@ -24,11 +24,12 @@ export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
 export const PinSpec = Joi.object()
   .keys({
-    name: Joi.string().example("Springfield").required(),
+    name: Joi.string().example("Springfield").optional(),
     description: Joi.string().example("Middle American town").optional(),
     lattitude: Joi.string().example("56.23").optional(),
     longitude: Joi.string().example("23.44").optional(),
     userid: IdSpec,
+    img: Joi.string().example("your-image-url").optional(),
   })
   .label("Pin");
 

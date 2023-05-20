@@ -25,6 +25,7 @@ suite("Pin API tests", () => {
 
   test("create a pin", async () => {
     const newPin = await poiService.createPin(testPin);
+    console.log(newPin);
     assert.isNotNull(newPin);
     assertSubset(testPin, newPin);
   });
@@ -93,4 +94,12 @@ suite("Pin API tests", () => {
       assert(error.response.data.message === "No pin with this id", "Incorrect Response Message");
     }
   });
+
+  test("upload image", async () => {
+    const newPin = await poiService.createPin(testPin);
+    console.log(newPin);
+    assert.isNotNull(newPin);
+    assertSubset(testPin, newPin);
+  });
+
 });

@@ -149,6 +149,14 @@ export const pinMongoStore = {
     async deleteAll() {
       await Pin.deleteMany({});
     },
+
+    async updatePinProps(objectId, updatedProps) {
+      await Pin.updateOne(
+        { _id: objectId }, 
+        { $set: updatedProps }
+      );
+      
+    },
   
     async updatePin(pin, updatedPin) {
       //const dbPin = await Pin.findOne({ _id: pin._id }).lean();
@@ -220,5 +228,12 @@ export const pinMongoStore = {
         });
       }  
     },  
-  
+
+    async updateImage(updatedPin) {
+      const pin = await Pin.findOne({ _id: updatedPin._id });
+      console.log(pin);
+      pin.img = updatedPin.img;
+      console.log(pin);
+      await pin.save();
+    },
   };  

@@ -5,9 +5,12 @@ import { validationError } from "./logger.js";
 
 export const pinApi = {
   create: {
+    auth: false,
+    /*
     auth: {
       strategy: "jwt",
     },
+    */
     handler: async function(request, h) {
       try {
         const pin = await db.pinStore.addPin(request.payload);
@@ -27,9 +30,12 @@ export const pinApi = {
   },
 
   find: {
+    auth: false,
+    /*
     auth: {
       strategy: "jwt",
     },
+    */
     handler: async function(request, h) {
       try {
         const pins = await db.pinStore.getAllPins();
@@ -45,9 +51,12 @@ export const pinApi = {
   },
 
   findOne: {
+    auth: false,
+    /*
     auth: {
       strategy: "jwt",
     },
+    */
     handler: async function (request, h) {
       try {
         const pin = await db.pinStore.getPinById(request.params.id);
@@ -67,9 +76,12 @@ export const pinApi = {
   },
 
   deleteOne: {
+    auth: false,
+    /*
     auth: {
       strategy: "jwt",
     },
+    */
     handler: async function (request, h) {
       try {
         const pin = await db.pinStore.getPinById(request.params.id);
@@ -89,9 +101,12 @@ export const pinApi = {
   },
   
   deleteAll: {
+    auth: false,
+    /*
     auth: {
       strategy: "jwt",
     },
+    */
     handler: async function (request, h) {
       try {
         await db.pinStore.deleteAll();
@@ -104,4 +119,28 @@ export const pinApi = {
     description: "Delete pins",
     notes: "Deletes all pins with the pinApi",
   },  
+
+  uploadImage: {
+    auth: false,
+    /*
+    auth: {
+      strategy: "jwt",
+    },
+    */
+    handler: async function(request, h) {
+      try {
+        const image = await db.pinStore.addImage(request);
+        if (image) {
+          return h.response(pin).code(201);
+        }
+        return Boom.badImplementation("error adding image");
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+    tags: ["api"],
+    description: "Upload an image",
+    notes: "Adds an image to a pin",
+  },
+
 };

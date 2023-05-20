@@ -77,4 +77,9 @@ export const testCategories = [
   },
 ];
 
-export const serviceUrl = "http://localhost:3000";
+export const pinUpdates = {
+    name: "updatedName",
+}
+
+
+export const serviceUrl = "http://localhost:2492";

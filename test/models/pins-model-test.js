@@ -1,6 +1,6 @@
 import { assert, expect } from "chai";
 import { db } from "../../src/models/db.js";
-import { testPin, multiTestPins } from "../fixtures.js";
+import { testPin, multiTestPins, pinUpdates } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 import { EventEmitter } from "events";
 
@@ -64,6 +64,16 @@ suite("Pin Model tests", () => {
         }
         let userPins = db.pinStore.getUserPins("12345");
         assertSubset(dbUserPins, userPins);
+    });
+
+    test("update pin properties", async () => {
+        const dbPin = await db.pinStore.addPin(testPin);
+        assertSubset(dbPin, testPin);
+        console.log(dbPin);
+        await db.pinStore.updatePinProps(dbPin._id, pinUpdates);
+        const updatedPin = await db.pinStore.getPinById(dbPin._id);
+        console.log(updatedPin);
+        assertSubset(updatedPin.name, pinUpdates.name);
     })
     
     /*

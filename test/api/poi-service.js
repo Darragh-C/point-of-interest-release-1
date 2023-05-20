@@ -60,6 +60,11 @@ export const poiService = {
     return response;
   },
 
+  async uploadImage(image) {
+    const res = await axios.post(`${this.poiUrl}/api/pins/${id}/uploadimage`, image);
+    return res.data;
+  },
+
   //Category API
   async createCategory(id, category) {
     const res = await axios.post(`${this.poiUrl}/api/pins/${id}/categories`, category);

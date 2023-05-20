@@ -1,5 +1,6 @@
 import { db } from "../models/db.js";
 import { CategorySpec } from "../models/joi-schemas.js";
+import { imageStore } from "../models/image-store.js";
 
 export const pinController = {
   index: {
@@ -52,5 +53,31 @@ export const pinController = {
       await db.pinStore.updatePin(pin, updatedPin);
       return h.redirect(`/pin/${pinId}`);
     }
-  }
+  },
+
+  updateImage: {
+    handler: async function (request, h) {
+      const pin = await db.pinStore.getPinById(request.params.id);
+      const file = request.payload.imagefile;
+      try {
+        if (Object.keys(file).length > 0) {
+          const url = await imageStore.uploadImage(request.payload.imagefile);
+          console.log('url:');
+          console.log(url);
+          pin.img = url;
+          await db.pinStore.updateImage(pin);
+        }
+        return h.redirect(`/pin/${pin._id}`);
+      } catch (err) {
+        console.log(err);
+        return h.redirect(`/pin/${pin._id}`);
+      }
+    },
+    payload: {
+      multipart: true,
+      output: "data",
+      maxBytes: 209715200,
+      parse: true,
+    },
+  },
 };

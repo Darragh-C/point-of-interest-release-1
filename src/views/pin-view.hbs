@@ -20,6 +20,15 @@
         </div>    
     </div>
     {{> list-categories }}
-    {{> add-category pin}}
-    {{> add-tags pin}}
-</section>
+    
+    <section class="section columns">
+        <div class="columns">
+            <div class="column">
+                {{> add-category pin}}
+                {{> add-tags pin}}
+            </div>
+            <div class="column">
+                {{> add-image }}
+            </div>    
+        </div>
+    </section>

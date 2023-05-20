@@ -21,7 +21,7 @@ const __dirname = path.dirname(__filename);
 const result = dotenv.config();
 if (result.error) {
   console.log(result.error.message);
-  process.exit(1);
+  //process.exit(1);
 }
 
 const swaggerOptions = {
@@ -41,7 +41,8 @@ const swaggerOptions = {
 
 async function init() {
   const server = Hapi.server({
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 2493,
+    routes: { cors: true },
   });
 
   await server.register(Inert);

@@ -13,6 +13,7 @@ export const apiRoutes = [
   { method: "DELETE", path: "/api/pins", config: pinApi.deleteAll },
   { method: "GET", path: "/api/pins/{id}", config: pinApi.findOne }, 
   { method: "DELETE", path: "/api/pins/{id}", config: pinApi.deleteOne },
+  { method: "POST", path: "/api/pins/{id}/uploadimage", config: pinApi.uploadImage },
 
   { method: "GET", path: "/api/categories", config: categoryApi.find },
   { method: "POST", path: "/api/pins/{id}/categories", config: categoryApi.create },

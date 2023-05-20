@@ -1,0 +1,31 @@
+<h2 class="subtitle">All user pins</h2>
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+      <th>
+        Place
+      </th>
+      <th>
+        Category
+      </th>  
+      <th>
+        User id
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.pins}}
+      <tr>
+        <td>
+          {{name}}
+        </td>
+        <td>
+          {{category}}
+        </td>
+        <td>
+          {{userid}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

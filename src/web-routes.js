@@ -3,6 +3,7 @@ import { dashboardController } from "./controllers/dashboard-controller.js";
 import { pinController } from "./controllers/pin-controller.js";
 import { aboutController } from "./controllers/about-controller.js";
 import { settingsController } from "./controllers/settings-controller.js";
+import { adminController } from "./controllers/admin-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: accountsController.index },
@@ -22,6 +23,10 @@ export const webRoutes = [
   { method: "GET", path: "/pin/{id}", config: pinController.index },
   { method: "POST", path: "/pin/{id}/addtags", config: pinController.updatePin },
   { method: "POST", path: "/pin/{id}/addcategory", config: pinController.addCategory },
+  { method: "POST", path: "/pin/{id}/uploadimage", config: pinController.updateImage },
+
+  { method: "GET", path: "/admin", config: adminController.index },
+
 
   { method: "GET", path: "/settings", config: settingsController.index },
   { method: "POST", path: "/settings/updatename", config: settingsController.updateName },
