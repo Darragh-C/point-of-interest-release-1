@@ -59,6 +59,7 @@ export const pinController = {
     handler: async function (request, h) {
       const pin = await db.pinStore.getPinById(request.params.id);
       const file = request.payload.imagefile;
+      console.log(`imagefile: ${file}`)
       try {
         if (Object.keys(file).length > 0) {
           const url = await imageStore.uploadImage(request.payload.imagefile);

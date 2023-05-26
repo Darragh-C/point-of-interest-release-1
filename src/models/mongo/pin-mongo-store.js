@@ -151,11 +151,17 @@ export const pinMongoStore = {
     },
 
     async updatePinProps(objectId, updatedProps) {
-      await Pin.updateOne(
-        { _id: objectId }, 
-        { $set: updatedProps }
-      );
-      
+      try {
+        await Pin.updateOne(
+          { _id: objectId }, 
+          { $set: updatedProps },
+          { upsert: true }
+        );
+        const updatedPin = await this.getPinById(objectId);
+        return updatedPin;
+      } catch (error) {
+        console.error('Error updating object:', error);
+      }
     },
   
     async updatePin(pin, updatedPin) {
@@ -236,4 +242,15 @@ export const pinMongoStore = {
       console.log(pin);
       await pin.save();
     },
+
+    async removeImage(pinId) {
+      try {
+        console.log('removing image')
+        const removeName = {$unset: {img: ""} };
+        const pin = await Pin.updateOne({ _id: pinId }, removeName);
+        return true;
+      } catch (error) {
+        console.error('Error updating object:', error);
+      }
+    }
   };  

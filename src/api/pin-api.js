@@ -2,6 +2,7 @@ import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
 import { PinArraySpec, IdSpec, PinSpec, PinSpecPlus } from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
+import { imageStore } from "../models/image-store.js";
 
 export const pinApi = {
   create: {
@@ -69,7 +70,7 @@ export const pinApi = {
       }
     },
     tags: ["api"],
-    description: "Get user",
+    description: "Get pin",
     notes: "Gets a pin with the pinApi when you pass its id",
     validate: { params: { id: IdSpec }, failAction: validationError },
     response: { schema: PinSpecPlus, failAction: validationError },
@@ -120,6 +121,55 @@ export const pinApi = {
     notes: "Deletes all pins with the pinApi",
   },  
 
+  updatePin: {
+    auth: false,
+    /*
+    auth: {
+      strategy: "jwt",
+    },
+    */
+    handler: async function (request, h) {
+      try {
+        const pin = await db.pinStore.updatePinProps(request.params.id, request.payload);
+        if (!pin) {
+          return Boom.notFound("Update error");
+        }
+        return pin;
+      } catch (err) {
+        return err;
+      }
+    },
+    tags: ["api"],
+    description: "Update pin",
+    notes: "Updates a pin with the pinApi when you pass its id and your update",
+
+  },
+
+  pinUpdate: {
+    auth: false,
+    /*
+    auth: {
+      strategy: "jwt",
+    },
+    */
+    handler: async function (request, h) {
+      try {
+        const pinToUpdate = db.pinStore.getPinById(request.params.id)
+        const pin = await db.pinStore.updatePin(pinToUpdate, request.payload);
+        if (!pin) {
+          return Boom.notFound("Update error");
+        }
+        return pin;
+      } catch (err) {
+        return Boom.serverUnavailable("No Pin with this id");
+      }
+    },
+    tags: ["api"],
+    description: "Update pin",
+    notes: "Updates a pin with the pinApi when you pass its id and your update",
+
+  },
+
   uploadImage: {
     auth: false,
     /*
@@ -127,20 +177,57 @@ export const pinApi = {
       strategy: "jwt",
     },
     */
-    handler: async function(request, h) {
+    handler: async function (request, h) {
+      const pin = await db.pinStore.getPinById(request.params.id);
+      const file = request.payload.imagefile;
+      
       try {
-        const image = await db.pinStore.addImage(request);
-        if (image) {
-          return h.response(pin).code(201);
+        if (Object.keys(file).length > 0) {
+          const url = await imageStore.uploadImage(request.payload.imagefile);
+          console.log('url:');
+          console.log(url);
+          pin.img = url;
+          await db.pinStore.updateImage(pin);
+          return url.toString();
         }
-        return Boom.badImplementation("error adding image");
       } catch (err) {
-        return Boom.serverUnavailable("Database Error");
+        console.log(err);
       }
+    },
+    payload: {
+      multipart: true,
+      output: "data",
+      maxBytes: 209715200,
+      parse: true,
     },
     tags: ["api"],
     description: "Upload an image",
     notes: "Adds an image to a pin",
+  },
+
+  removeImage: {
+    auth: false,
+    /*
+    auth: {
+      strategy: "jwt",
+    },
+    */
+    handler: async function (request, h) {
+      try {
+        const pin = await db.pinStore.removeImage(request.params.id);
+        if (!pin) {
+          return Boom.notFound("Update error");
+        }
+        return h.response().code(200);
+      } catch (err) {
+        console.log(err);
+        return err;
+      }
+    },
+    tags: ["api"],
+    description: "Removes image",
+    notes: "Removes a pin image with the pinApi when you pass its id",
+
   },
 
 };

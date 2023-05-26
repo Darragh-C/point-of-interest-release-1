@@ -41,8 +41,14 @@ const swaggerOptions = {
 
 async function init() {
   const server = Hapi.server({
-    port: process.env.PORT || 2493,
-    routes: { cors: true },
+    port: process.env.PORT || 3000,
+    routes: { 
+      cors: {
+        origin: ['*'], // allow requests from any origin
+        headers: ['Accept', 'Authorization', 'Content-Type', 'If-None-Match', 'Accept-language'],
+        additionalHeaders: ['cache-control', 'x-requested-with']
+      } 
+    },
   });
 
   await server.register(Inert);

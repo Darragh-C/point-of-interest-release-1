@@ -65,6 +65,16 @@ export const poiService = {
     return res.data;
   },
 
+  async updatePin(id, update) {
+    const res = await axios.patch(`${this.poiUrl}/api/pins/${id}/updatepin`, update);
+    return res.data;
+  },
+
+  async pinUpdate(id, update) {
+    const res = await axios.patch(`${this.poiUrl}/api/pins/${id}/pinupdate`, update);
+    return res.data;
+  },
+
   //Category API
   async createCategory(id, category) {
     const res = await axios.post(`${this.poiUrl}/api/pins/${id}/categories`, category);

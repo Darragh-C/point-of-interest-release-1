@@ -175,6 +175,272 @@ export const seedData = {
       longitude: "-9.2603",
       lattitude: "53.0856",
       userid: "->users.bart"
+    },
+    lake1: {
+      name: "Lough Corrib",
+      description: "Largest lake in the Republic of Ireland",
+      longitude: "-9.3159",
+      lattitude: "53.4814",
+      userid: "->users.bart"
+    },
+    lake2: {
+      name: "Lough Derg",
+      description: "Second-largest lake in Ireland",
+      longitude: "-8.3133",
+      lattitude: "52.9245",
+      userid: "->users.homer"
+    },
+    lake3: {
+      name: "Lough Ree",
+      description: "Third-largest lake on the River Shannon",
+      longitude: "-7.8616",
+      lattitude: "53.5122",
+      userid: "->users.marge"
+    },
+    lake4: {
+      name: "Lough Neagh",
+      description: "Largest lake in the United Kingdom and Ireland",
+      longitude: "-6.4487",
+      lattitude: "54.6161",
+      userid: "->users.bart"
+    },
+    lake5: {
+      name: "Lough Conn",
+      description: "Beautiful lake with stunning scenery",
+      longitude: "-9.2477",
+      lattitude: "53.9815",
+      userid: "->users.homer"
+    },
+    lake6: {
+      name: "Lough Gill",
+      description: "Picturesque lake in County Sligo",
+      longitude: "-8.3804",
+      lattitude: "54.2506",
+      userid: "->users.marge"
+    },
+    lake7: {
+      name: "Lough Allen",
+      description: "Serene lake surrounded by mountains",
+      longitude: "-8.0013",
+      lattitude: "54.0096",
+      userid: "->users.bart"
+    },
+    lake8: {
+      name: "Lough Sheelin",
+      description: "Tranquil lake popular for fishing",
+      longitude: "-7.4275",
+      lattitude: "53.8578",
+      userid: "->users.homer"
+    },
+    lake9: {
+      name: "Lough Erne",
+      description: "Two interconnected lakes with historic islands",
+      longitude: "-7.6341",
+      lattitude: "54.4419",
+      userid: "->users.marge"
+    },
+    lake10: {
+      name: "Lough Oughter",
+      description: "Scenic lake with multiple islands",
+      longitude: "-7.2627",
+      lattitude: "53.9388",
+      userid: "->users.bart"
+    },
+    lake11: {
+      name: "Lough Ramor",
+      description: "Peaceful lake in County Cavan",
+      longitude: "-7.0819",
+      lattitude: "53.8723",
+      userid: "->users.homer"
+    },
+    lake12: {
+      name: "Lough Carra",
+      description: "Nature reserve and angler's paradise",
+      longitude: "-9.2791",
+      lattitude: "53.7698",
+      userid: "->users.marge"
+    },
+    lake13: {
+      name: "Lough Gowna",
+      description: "Limestone lake in County Cavan",
+      longitude: "-7.4978",
+      lattitude: "53.8089",
+      userid: "->users.bart"
+    },
+    lake14: {
+      name: "Lough Melvin",
+      description: "Shared lake between County Leitrim and County Fermanagh",
+      longitude: "-8.0246",
+      lattitude: "54.4349",
+      userid: "->users.homer"
+    },
+    lake15: {
+      name: "Lough Muckno",
+      description: "Large lake surrounded by parkland",
+      longitude: "-6.7413",
+      lattitude: "53.7195",
+      userid: "->users.marge"
+    },
+    lake16: {
+      name: "Lough Swilly",
+      description: "Sea lough on the Inishowen Peninsula",
+      longitude: "-7.5228",
+      lattitude: "55.0547",
+      userid: "->users.bart"
+    },
+    lake17: {
+      name: "Lough Connolly",
+      description: "Scenic lake near Letterkenny",
+      longitude: "-7.7431",
+      lattitude: "54.9521",
+      userid: "->users.homer"
+    },
+    lake18: {
+      name: "Lough Arrow",
+      description: "Beautiful lake in County Sligo",
+      longitude: "-8.3029",
+      lattitude: "54.0596",
+      userid: "->users.marge"
+    },
+    aires1: {
+      name: "Silver Strand Caravan Park",
+      description: "Scenic campervan park near Wicklow",
+      longitude: "-6.0731",
+      lattitude: "52.9855",
+      userid: "->users.bart"
+    },
+    aires2: {
+      name: "Clifden Eco Beach Camping and Caravanning Park",
+      description: "Sustainable campervan park on the Wild Atlantic Way",
+      longitude: "-10.0601",
+      lattitude: "53.4606",
+      userid: "->users.homer"
+    },
+    aires3: {
+      name: "Nagles Camping & Caravan Park",
+      description: "Family-friendly campervan park in County Kerry",
+      longitude: "-9.6847",
+      lattitude: "52.1119",
+      userid: "->users.marge"
+    },
+    aires4: {
+      name: "Lough Key Caravan and Camping Park",
+      description: "Campervan park near Boyle with beautiful surroundings",
+      longitude: "-8.0906",
+      lattitude: "54.0027",
+      userid: "->users.bart"
+    },
+    aires5: {
+      name: "Dromquinna Manor Camping & Caravan Park",
+      description: "Luxurious campervan park overlooking Kenmare Bay",
+      longitude: "-9.6426",
+      lattitude: "51.7992",
+      userid: "->users.homer"
+    },
+    aires6: {
+      name: "Battlebridge Caravan & Camping Park",
+      description: "Riverside campervan park in County Leitrim",
+      longitude: "-8.0533",
+      lattitude: "54.0628",
+      userid: "->users.marge"
+    },
+    aires7: {
+      name: "Keel Sandybanks Caravan & Camping Park",
+      description: "Seaside campervan park on Achill Island",
+      longitude: "-10.0201",
+      lattitude: "53.9727",
+      userid: "->users.bart"
+    },
+    aires8: {
+      name: "Killybegs Holiday Park",
+      description: "Coastal campervan park with stunning views",
+      longitude: "-8.4593",
+      lattitude: "54.6379",
+      userid: "->users.homer"
+    },
+    aires9: {
+      name: "Lough Arrow Touring Caravan Park",
+      description: "Tranquil campervan park near Boyle",
+      longitude: "-8.3151",
+      lattitude: "54.0564",
+      userid: "->users.marge"
+    },
+    aires10: {
+      name: "Ferrybank Caravan & Camping Park",
+      description: "Riverside campervan park in County Wexford",
+      longitude: "-6.8431",
+      lattitude: "52.4009",
+      userid: "->users.bart"
+    },
+    aires11: {
+      name: "Roundwood Caravan and Camping Park",
+      description: "Peaceful campervan park in County Wicklow",
+      longitude: "-6.2175",
+      lattitude: "53.0577",
+      userid: "->users.homer"
+    },
+    aires12: {
+      name: "Mannix Point Camping and Caravan Park",
+      description: "Coastal campervan park on the Ring of Kerry",
+      longitude: "-9.9006",
+      lattitude: "52.1051",
+      userid: "->users.marge"
+    },
+    aires13: {
+      name: "Wave Crest Caravan Park",
+      description: "Seaside campervan park in County Waterford",
+      longitude: "-7.6103",
+      lattitude: "52.1162",
+      userid: "->users.bart"
+    },
+    aires14: {
+      name: "Lough Ennell Caravan & Camping Park",
+      description: "Lakeside campervan park near Mullingar",
+      longitude: "-7.4043",
+      lattitude: "53.5047",
+      userid: "->users.homer"
+    },
+    aires15: {
+      name: "Beara Camping",
+      description: "Idyllic campervan park on the Beara Peninsula",
+      longitude: "-9.8174",
+      lattitude: "51.6906",
+      userid: "->users.marge"
+    },
+    aires16: {
+      name: "Wavecrest Caravan and Camping Park",
+      description: "Family-friendly campervan park in County Kerry",
+      longitude: "-10.2717",
+      lattitude: "52.1587",
+      userid: "->users.bart"
+    },
+    aires17: {
+      name: "Valentia Island Caravan and Camping",
+      description: "Campervan park on Valentia Island with beautiful views",
+      longitude: "-10.3666",
+      lattitude: "51.9249",
+      userid: "->users.homer"
+    },
+    aires18: {
+      name: "Nagles Doolin Camping & Caravan Park",
+      description: "Campervan park near the Cliffs of Moher",
+      longitude: "-9.3999",
+      lattitude: "53.0105",
+      userid: "->users.marge"
+    },
+    aires19: {
+      name: "Cong Caravan & Camping Park",
+      description: "Tranquil campervan park near Ashford Castle",
+      longitude: "-9.2821",
+      lattitude: "53.5431",
+      userid: "->users.bart"
+    },
+    aires20: {
+      name: "Lough Ree East Caravan and Camping Park",
+      description: "Scenic campervan park on Lough Ree",
+      longitude: "-7.9657",
+      lattitude: "53.4641",
+      userid: "->users.homer"
     }
   },
   categories: {
@@ -438,6 +704,310 @@ export const seedData = {
     county21: {
       category: "Clare",
       pinId: "->pins.beach21"
+    },
+    lake1: {
+      category: "Lake",
+      pinId: "->pins.lake1"
+    },
+    free22: {
+      category: "Free",
+      pinId: "->pins.lake1"
+    },
+    lake2: {
+      category: "Lake",
+      pinId: "->pins.lake2"
+    },
+    free23: {
+      category: "Free",
+      pinId: "->pins.lake2"
+    },
+    lake3: {
+      category: "Lake",
+      pinId: "->pins.lake3"
+    },
+    free24: {
+      category: "Free",
+      pinId: "->pins.lake3"
+    },
+    lake4: {
+      category: "Lake",
+      pinId: "->pins.lake4"
+    },
+    free25: {
+      category: "Free",
+      pinId: "->pins.lake4"
+    },
+    lake5: {
+      category: "Lake",
+      pinId: "->pins.lake5"
+    },
+    free26: {
+      category: "Free",
+      pinId: "->pins.lake5"
+    },
+    lake6: {
+      category: "Lake",
+      pinId: "->pins.lake6"
+    },
+    free27: {
+      category: "Free",
+      pinId: "->pins.lake6"
+    },
+    lake7: {
+      category: "Lake",
+      pinId: "->pins.lake7"
+    },
+    free28: {
+      category: "Free",
+      pinId: "->pins.lake7"
+    },
+    lake8: {
+      category: "Lake",
+      pinId: "->pins.lake8"
+    },
+    free29: {
+      category: "Free",
+      pinId: "->pins.lake8"
+    },
+    lake9: {
+      category: "Lake",
+      pinId: "->pins.lake9"
+    },
+    free30: {
+      category: "Free",
+      pinId: "->pins.lake9"
+    },
+    lake10: {
+      category: "Lake",
+      pinId: "->pins.lake10"
+    },
+    free31: {
+      category: "Free",
+      pinId: "->pins.lake10"
+    },
+    lake11: {
+      category: "Lake",
+      pinId: "->pins.lake11"
+    },
+    free32: {
+      category: "Free",
+      pinId: "->pins.lake11"
+    },
+    lake12: {
+      category: "Lake",
+      pinId: "->pins.lake12"
+    },
+    free33: {
+      category: "Free",
+      pinId: "->pins.lake12"
+    },
+    lake13: {
+      category: "Lake",
+      pinId: "->pins.lake13"
+    },
+    free34: {
+      category: "Free",
+      pinId: "->pins.lake13"
+    },
+    lake14: {
+      category: "Lake",
+      pinId: "->pins.lake14"
+    },
+    free35: {
+      category: "Free",
+      pinId: "->pins.lake14"
+    },
+    lake15: {
+      category: "Lake",
+      pinId: "->pins.lake15"
+    },
+    free36: {
+      category: "Free",
+      pinId: "->pins.lake15"
+    },
+    lake16: {
+      category: "Lake",
+      pinId: "->pins.lake16"
+    },
+    free37: {
+      category: "Free",
+      pinId: "->pins.lake16"
+    },
+    lake17: {
+      category: "Lake",
+      pinId: "->pins.lake17"
+    },
+    free38: {
+      category: "Free",
+      pinId: "->pins.lake17"
+    },
+    lake18: {
+      category: "Lake",
+      pinId: "->pins.lake18"
+    },
+    free39: {
+      category: "Free",
+      pinId: "->pins.lake18"
+    },
+    paid1: {
+      category: "Paid",
+      pinId: "->pins.aires1"
+    },
+    campervan1aires: {
+      category: "Aires",
+      pinId: "->pins.aires1"
+    },
+    paid2: {
+      category: "Paid",
+      pinId: "->pins.aires2"
+    },
+    campervan2aires: {
+      category: "Aires",
+      pinId: "->pins.aires2"
+    },
+    paid3: {
+      category: "Paid",
+      pinId: "->pins.aires3"
+    },
+    campervan3aires: {
+      category: "Aires",
+      pinId: "->pins.aires3"
+    },
+    paid4: {
+      category: "Paid",
+      pinId: "->pins.aires4"
+    },
+    campervan4aires: {
+      category: "Aires",
+      pinId: "->pins.aires4"
+    },
+    paid5: {
+      category: "Paid",
+      pinId: "->pins.aires5"
+    },
+    campervan5aires: {
+      category: "Aires",
+      pinId: "->pins.aires5"
+    },
+    paid6: {
+      category: "Paid",
+      pinId: "->pins.aires6"
+    },
+    campervan6aires: {
+      category: "Aires",
+      pinId: "->pins.aires6"
+    },
+    paid7: {
+      category: "Paid",
+      pinId: "->pins.aires7"
+    },
+    campervan7aires: {
+      category: "Aires",
+      pinId: "->pins.aires7"
+    },
+    paid8: {
+      category: "Paid",
+      pinId: "->pins.aires8"
+    },
+    campervan8aires: {
+      category: "Aires",
+      pinId: "->pins.aires8"
+    },
+    paid9: {
+      category: "Paid",
+      pinId: "->pins.aires9"
+    },
+    campervan9aires: {
+      category: "Aires",
+      pinId: "->pins.aires9"
+    },
+    paid10: {
+      category: "Paid",
+      pinId: "->pins.aires10"
+    },
+    campervan10aires: {
+      category: "Aires",
+      pinId: "->pins.aires10"
+    },
+    paid11: {
+      category: "Paid",
+      pinId: "->pins.aires11"
+    },
+    campervan11aires: {
+      category: "Aires",
+      pinId: "->pins.aires11"
+    },
+    paid12: {
+      category: "Paid",
+      pinId: "->pins.aires12"
+    },
+    campervan12aires: {
+      category: "Aires",
+      pinId: "->pins.aires12"
+    },
+    paid13: {
+      category: "Paid",
+      pinId: "->pins.aires13"
+    },
+    campervan13aires: {
+      category: "Aires",
+      pinId: "->pins.aires13"
+    },
+    paid14: {
+      category: "Paid",
+      pinId: "->pins.aires14"
+    },
+    campervan14aires: {
+      category: "Aires",
+      pinId: "->pins.aires14"
+    },
+    paid15: {
+      category: "Paid",
+      pinId: "->pins.aires15"
+    },
+    campervan15aires: {
+      category: "Aires",
+      pinId: "->pins.aires15"
+    },
+    paid16: {
+      category: "Paid",
+      pinId: "->pins.aires16"
+    },
+    campervan16aires: {
+      category: "Aires",
+      pinId: "->pins.aires16"
+    },
+    paid17: {
+      category: "Paid",
+      pinId: "->pins.aires17"
+    },
+    campervan17aires: {
+      category: "Aires",
+      pinId: "->pins.aires17"
+    },
+    paid18: {
+      category: "Paid",
+      pinId: "->pins.aires18"
+    },
+    campervan18aires: {
+      category: "Aires",
+      pinId: "->pins.aires18"
+    },
+    paid19: {
+      category: "Paid",
+      pinId: "->pins.aires19"
+    },
+    campervan19aires: {
+      category: "Aires",
+      pinId: "->pins.aires19"
+    },
+    paid20: {
+      category: "Paid",
+      pinId: "->pins.aires20"
+    },
+    campervan20aires: {
+      category: "Aires",
+      pinId: "->pins.aires20"
     }
   }
   }

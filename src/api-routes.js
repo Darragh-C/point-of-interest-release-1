@@ -14,6 +14,9 @@ export const apiRoutes = [
   { method: "GET", path: "/api/pins/{id}", config: pinApi.findOne }, 
   { method: "DELETE", path: "/api/pins/{id}", config: pinApi.deleteOne },
   { method: "POST", path: "/api/pins/{id}/uploadimage", config: pinApi.uploadImage },
+  { method: "PATCH", path: "/api/pins/{id}/updatepin", config: pinApi.updatePin },
+  { method: "POST", path: "/api/pins/{id}/pinupdate", config: pinApi.pinUpdate },
+  { method: "PUT", path: "/api/pins/{id}/removeimage", config: pinApi.removeImage },
 
   { method: "GET", path: "/api/categories", config: categoryApi.find },
   { method: "POST", path: "/api/pins/{id}/categories", config: categoryApi.create },

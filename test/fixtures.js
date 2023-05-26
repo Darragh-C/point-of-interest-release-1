@@ -78,8 +78,8 @@ export const testCategories = [
 ];
 
 export const pinUpdates = {
-    name: "updatedName",
+    description: "updatedDescription",
 }
 
 
-export const serviceUrl = "http://localhost:2492";
+export const serviceUrl = "http://localhost:9122";

@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { poiService } from "./poi-service.js";
 import { assertSubset } from "../test-utils.js";
-import { johnDoe, johnDoeCredentials, testPin, multiTestPins } from "../fixtures.js";
+import { johnDoe, johnDoeCredentials, testPin, multiTestPins, pinUpdates } from "../fixtures.js";
 import { EventEmitter } from "events";
 
 EventEmitter.setMaxListeners(25);
@@ -100,6 +100,28 @@ suite("Pin API tests", () => {
     console.log(newPin);
     assert.isNotNull(newPin);
     assertSubset(testPin, newPin);
+  });
+
+  test("pin update", async () => {
+    const pin = await poiService.createPin(testPin);
+    const dbPin = await poiService.getPin(pin._id);
+    console.log(dbPin);
+    console.log(`dbPin id: ${dbPin._id}`);
+    assertSubset(dbPin, testPin);
+    const test = await poiService.pinUpdate(dbPin._id, pinUpdates);
+    console.log(test);
+    
+  });
+
+  test("update pin", async () => {
+    const pin = await poiService.createPin(testPin);
+    const dbPin = await poiService.getPin(pin._id);
+    console.log(dbPin);
+    console.log(`dbPin id: ${dbPin._id}`);
+    assertSubset(dbPin, testPin);
+    const test = await poiService.updatePin(dbPin._id, pinUpdates);
+    console.log(test);
+    
   });
 
 });
