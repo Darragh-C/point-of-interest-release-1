@@ -7,9 +7,12 @@ import { createToken } from "./jwt-utils.js";
 export const userApi = {
 
   find: {
+    auth: false,
+    /*
     auth: {
       strategy: "jwt",
     },
+    */
     handler: async function (request, h) {
       try {
         const users = await db.userStore.getAllUsers();
@@ -25,9 +28,12 @@ export const userApi = {
   },
 
   findOne: {
+    auth: false,
+    /*
     auth: {
       strategy: "jwt",
     },
+    */
     handler: async function (request, h) {
       try {
         const user = await db.userStore.getUserById(request.params.id);
@@ -67,9 +73,12 @@ export const userApi = {
   },
 
   deleteAll: {
+    auth: false,
+    /*
     auth: {
       strategy: "jwt",
     },
+    */
     handler: async function (request, h) {
       try {
         await db.userStore.deleteAll();
@@ -85,6 +94,11 @@ export const userApi = {
 
   authenticate: {
     auth: false,
+    /*
+    auth: {
+      strategy: "jwt",
+    },
+    */
     handler: async function (request, h) {
       try {
         const user = await db.userStore.getUserByEmail(request.payload.email);
